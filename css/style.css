@@ -1842,6 +1842,260 @@ img {
 }
 
 /* ============================================
+   HERO BADGE
+   ============================================ */
+.hero-badge {
+  position: absolute;
+  top: -8px;
+  right: -24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: var(--gradient-primary);
+  border-radius: 20px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--bg-primary);
+  white-space: nowrap;
+  box-shadow: 0 2px 16px rgba(0, 212, 255, 0.4);
+  animation: badge-pulse 2.5s ease-in-out infinite;
+  z-index: 5;
+}
+
+.hero-badge svg {
+  flex-shrink: 0;
+  animation: badge-flash 2.5s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 2px 16px rgba(0, 212, 255, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 2px 24px rgba(0, 212, 255, 0.6), 0 0 12px rgba(123, 47, 247, 0.3);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes badge-flash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   PRICING PROMISE SECTION
+   ============================================ */
+.pricing-promise {
+  padding: 80px 0;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-promise::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+}
+
+.pricing-promise::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(123, 47, 247, 0.3), transparent);
+}
+
+.pricing-promise-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pricing-promise-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 212, 255, 0.04) 0%, rgba(123, 47, 247, 0.03) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.pricing-promise-header {
+  margin-bottom: 48px;
+}
+
+.pricing-promise-icon {
+  font-size: 2rem;
+  display: inline-block;
+  margin-bottom: 12px;
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+.pricing-promise-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.pricing-promise-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.pricing-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: var(--transition-normal);
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: var(--transition-normal);
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 212, 255, 0.05);
+}
+
+.pricing-card:hover::before {
+  opacity: 1;
+}
+
+.pricing-card-featured {
+  border-color: rgba(0, 212, 255, 0.25);
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.04) 0%, var(--bg-card) 100%);
+  transform: scale(1.05);
+}
+
+.pricing-card-featured::before {
+  opacity: 1;
+}
+
+.pricing-card-featured:hover {
+  transform: scale(1.05) translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 50px rgba(0, 212, 255, 0.1);
+}
+
+.pricing-card-badge {
+  position: absolute;
+  top: 12px;
+  right: -28px;
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 32px;
+  transform: rotate(45deg);
+}
+
+.pricing-card-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--gradient-glow);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  color: var(--accent-primary);
+  margin: 0 auto 18px;
+  transition: var(--transition-normal);
+}
+
+.pricing-card:hover .pricing-card-icon,
+.pricing-card-featured .pricing-card-icon {
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  border-color: transparent;
+}
+
+.pricing-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.pricing-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.pricing-card p strong {
+  color: var(--accent-primary);
+}
+
+.pricing-promise-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.pricing-promise-footer svg {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 1200px) {
@@ -1855,6 +2109,14 @@ img {
 
   .cert-card {
     flex-basis: calc((100% - 40px) / 2);
+  }
+
+  .pricing-card-featured {
+    transform: scale(1);
+  }
+
+  .pricing-card-featured:hover {
+    transform: translateY(-6px);
   }
 }
 
@@ -1925,6 +2187,35 @@ img {
   .ai-cta-services {
     flex-direction: column;
     align-items: center;
+  }
+
+  .pricing-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pricing-card-featured {
+    order: -1;
+  }
+
+  .pricing-card-badge {
+    position: static;
+    transform: none;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .pricing-promise {
+    padding: 60px 0;
+  }
+
+  .hero-badge {
+    top: -6px;
+    right: -16px;
+    font-size: 0.5rem;
+    padding: 4px 8px;
   }
 }
 
