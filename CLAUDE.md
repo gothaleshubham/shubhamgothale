@@ -69,3 +69,4 @@ Navbar → Hero (Canvas 2D particle network background) → About (bio + animate
 - **Contact form webhook URL** → edit `sheetUrl` in `js/main.js`
 - **Google Apps Script** → edit the `doPost()` function in the Apps Script editor (Extensions → Apps Script in the spreadsheet)
 - **Styling and theme** → edit CSS custom properties in `:root` at the top of `css/style.css`
+
