@@ -364,7 +364,7 @@
       // Google Sheets Apps Script webhook
       const sheetUrl = 'https://script.google.com/macros/s/AKfycbzi7xMP0fmhSxC-2kY2BMDtIhcG09ZnJBx7mYKP8RJ0Gan9lr-demWl98K5dWTNja6h/exec';
 
-      
+
       fetch(sheetUrl, {
         method: 'POST',
         mode: 'no-cors',
@@ -480,3 +480,4 @@
   );
 
 })();
+
