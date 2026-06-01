@@ -341,7 +341,7 @@
 
   sections.forEach((section) => sectionObserver.observe(section));
 
-  // ---- Contact Form Handling (Google Forms Backend) ----
+  // ---- Contact Form Handling (Google Sheets Backend) ----
   const contactForm = document.getElementById('contactForm');
 
   if (contactForm) {
@@ -361,37 +361,26 @@
       btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Sending...`;
       btn.disabled = true;
 
-      // Google Forms submission
-      const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScNIZvmmKupKJcLx9zs9l04cmIhiCkmO0d7pywFhff63G-Otw/formResponse';
+      // Google Sheets Apps Script webhook
+      const sheetUrl = 'https://script.google.com/macros/s/AKfycbzi7xMP0fmhSxC-2kY2BMDtIhcG09ZnJBx7mYKP8RJ0Gan9lr-demWl98K5dWTNja6h/exec';
 
-      const formPayload = new URLSearchParams();
-      formPayload.append('entry.1444812814', name);
-      formPayload.append('entry.807967735', email);
-      formPayload.append('entry.231645188', subject);
-      formPayload.append('entry.222576774', message);
-
-      fetch(formUrl, {
+      fetch(sheetUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formPayload.toString()
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message })
       })
       .then(() => {
-        // With no-cors we can't read the response, but the submission succeeds
+        // no-cors returns opaque response, but the Apps Script processes it
         btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!`;
         contactForm.reset();
-
-        // Also send email as backup notification
-        const mailtoSubject = encodeURIComponent(subject || 'Portfolio Inquiry from ' + name);
-        const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-        window.location.href = `mailto:shubhamgothale2503@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
       })
       .catch(() => {
-        // Fallback to mailto on error
+        // Fallback to mailto only on network error
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Opening Email Client...`;
         const mailtoSubject = encodeURIComponent(subject || 'Portfolio Inquiry from ' + name);
         const mailtoBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
         window.location.href = `mailto:shubhamgothale2503@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Opening Email Client...`;
       })
       .finally(() => {
         setTimeout(() => {

@@ -47,7 +47,7 @@ Navbar → Hero (Canvas 2D particle network background) → About (bio + animate
 - **Drag-and-drop** — skill category cards reorderable via native drag events
 - **Smooth scroll** — custom anchor handler with navbar offset
 - **Active nav highlight** — IntersectionObserver colors the nav link for the visible section
-- **Contact form** — submits to Google Forms via `fetch` (no-cors), falls back to `mailto:` on error
+- **Contact form** — posts JSON to Google Apps Script webhook via `fetch` (no-cors), which appends rows directly to a Google Sheet; falls back to `mailto:` only on network error
 - **Console easter egg** — styled log message
 
 ### CSS Architecture (css/style.css)
@@ -60,10 +60,12 @@ Navbar → Hero (Canvas 2D particle network background) → About (bio + animate
 ### External Dependencies
 
 - Google Fonts (Inter + JetBrains Mono) via CDN — no local assets or fallbacks configured beyond the font load itself
-- Contact form posts to a **Google Form** (URL and entry IDs in `js/main.js`)
+- Contact form posts JSON to a **Google Apps Script webhook** (URL in `js/main.js`) which appends rows directly to a Google Sheet
 
 ## Editing Content
 
 - **Static content** (name, bio, projects, experience, certifications, contact info) → edit directly in `index.html`
-- **Dynamic data** (typing titles in `titles[]`, stat counters via `data-target`/`data-suffix` attributes, contact form Google Form URL and entry IDs) → edit in `js/main.js`
+- **Dynamic data** (typing titles in `titles[]`, stat counters via `data-target`/`data-suffix` attributes) → edit in `js/main.js`
+- **Contact form webhook URL** → edit `sheetUrl` in `js/main.js`
+- **Google Apps Script** → edit the `doPost()` function in the Apps Script editor (Extensions → Apps Script in the spreadsheet)
 - **Styling and theme** → edit CSS custom properties in `:root` at the top of `css/style.css`
