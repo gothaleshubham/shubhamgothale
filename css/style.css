@@ -1893,7 +1893,7 @@ img {
 
 .pricing-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   margin-bottom: 0;
 }
@@ -2011,8 +2011,12 @@ img {
   }
 
   .pricing-cards {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pricing-card + .pricing-card {
+    border-left: none;
+    border-top: 1px solid rgba(0, 212, 255, 0.12);
   }
 }
 
