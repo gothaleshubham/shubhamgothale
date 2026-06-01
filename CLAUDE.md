@@ -34,7 +34,7 @@ Shubham_Gothale_Resume.pdf # Downloadable resume
 
 ### Sections (scroll order)
 
-Navbar → Hero (Canvas 2D particle network background, "Best Price" badge on profile) → About (bio + animated stat counters) → Skills (drag-reorderable category cards) → Projects (3D tilt-on-hover cards in a horizontal carousel) → Experience (vertical timeline) → Certifications (horizontal carousel) → AI Collaboration CTA → Pricing Promise → Contact → Footer.
+Navbar → Hero (Canvas 2D particle network background) → About (bio + animated stat counters) → Skills (drag-reorderable category cards) → Projects (3D tilt-on-hover cards in a horizontal carousel) → Experience (vertical timeline) → Certifications (horizontal carousel) → AI Collaboration CTA → Pricing Promise (dark banner with 3 cards) → Contact → Footer.
 
 ### Key JavaScript Features (js/main.js, wrapped in IIFE)
 
